@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import Table from './Table';
+import Thead from './Thead';
 
 function Search(props) {
   // setting my state where I can use getEmployeeData in my axios call once i receive my response
@@ -45,7 +47,7 @@ function Search(props) {
 
 
   }));
-  // console.log(filterEmployeeByFirstName);
+ 
 }
 
 // function where the user will be able to sort employees by last name
@@ -63,35 +65,24 @@ const sortByLastName = () => {
 
 
 }));
-// console.log(filterEmployeeByLastName);
+
 }
 
 // will use the results from our api call to map through our array and return a new array in a table with the select employee information. 
 return (
   <>
     <div>
-      <table class="justify">
-        <thead>
-          <tr>
-            <th>Profile Picture</th>
-            <th onClick={sortByFirstName}>First Name</th>
-            <th onClick={sortByLastName}>Last Name</th>
-            <th>Email</th>
-            <th>Age</th>
-          </tr>
-        </thead>
-      </table>
+      <Thead sortFirstName={sortByFirstName}
+      sortLastName={sortByLastName}
+      />
       {employeeData && employeeData.map((emp, item) => {
         return (
-          <table class="centered">
-            <tr key={item} style={{ textAlign: "justify" }}>
-              <td> <img src={emp.picture.medium} /></td>
-              <td>First Name:{emp.name.first}</td>
-              <td>Last Name:{emp.name.last}</td>
-              <td>Email:{emp.email}</td>
-              <td>Age:{emp.dob.age}</td>
-            </tr>
-          </table>
+          <Table picture={emp.picture.medium}
+          firstName={emp.name.first}
+          lastName={emp.name.last}
+          email={emp.email}
+          age={emp.dob.age}
+          />
         )
       })}
     </div>
