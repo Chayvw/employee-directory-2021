@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from './componets/Home';
 import NavBar from './containers/NavBar';
 import Footer from './containers/Footer'
@@ -11,10 +10,11 @@ function App() {
 
     <Router>
       <div className="App">
-        <NavBar />
-        <Route exact path='/home' component={Home} />
-        <Route path ='/search' component={Search} />
-      </div>
+            <NavBar />
+            <Route exact path='/home' component={Home} />
+            <Route path='/search' component={Search} />
+          </div>
+  
       <Footer />
     </Router>
 

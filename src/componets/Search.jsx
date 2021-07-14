@@ -46,48 +46,52 @@ function Search(props) {
       return 0;
 
 
-  }));
- 
-}
+    }));
 
-// function where the user will be able to sort employees by last name
-const sortByLastName = () => {
-  getFilterEmployeeByLastName(employeeData.sort((a, b) => {
-    const nameA = a.name.last;
-    const nameB = b.name.last;
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
+  }
+
+  // function where the user will be able to sort employees by last name
+  const sortByLastName = () => {
+    getFilterEmployeeByLastName(employeeData.sort((a, b) => {
+      const nameA = a.name.last;
+      const nameB = b.name.last;
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
 
 
-}));
+    }));
 
-}
+  }
 
-// will use the results from our api call to map through our array and return a new array in a table with the select employee information. 
-return (
-  <>
-    <div>
-      <Thead sortFirstName={sortByFirstName}
-      sortLastName={sortByLastName}
-      />
-      {employeeData && employeeData.map((emp, item) => {
-        return (
-          <Table picture={emp.picture.medium}
-          firstName={emp.name.first}
-          lastName={emp.name.last}
-          email={emp.email}
-          age={emp.dob.age}
-          />
-        )
-      })}
-    </div>
-  </>
-);
+  // will use the results from our api call to map through our array and return a new array in a table with the select employee information. 
+  return (
+    <>
+      <div className="container">
+        <div className="row">
+          <div className="col s12">
+            <Thead sortFirstName={sortByFirstName}
+              sortLastName={sortByLastName}
+            />
+            {employeeData && employeeData.map((emp, item) => {
+              return (
+                <Table picture={emp.picture.medium}
+                  firstName={emp.name.first}
+                  lastName={emp.name.last}
+                  email={emp.email}
+                  age={emp.dob.age}
+                />
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Search;
